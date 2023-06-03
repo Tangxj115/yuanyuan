@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      body {
+        background-color: pink;
+        text-align: center;
+      }
+      input {
+        width: 200px;
+        height: 30px;
+        font-size: 20px;
+      }
+      button {
+        width: 100px;
+        height: 50px;
+        font-size: 30px;
+        background-color: chartreuse;
+        border: none;
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+      button:hover {
+        background-color: chartreuse;
+      }
+    </style>
+    <script>
+      function checkAnswer() {
+        var input = document.getElementById("input");
+        var question = document.getElementById("question");
+        var answer = input.value;
+        if (
+          answer == "爱" ||
+          answer == "我爱你" ||
+          answer == "爱你" ||
+          answer == "你说呢"
+        ) {
+          question.innerHTML = "我也爱你";
+          input.style.display = "none";
+          button.style.display = "none";
+          // 新增的代码，创建一个“再问一次”的按钮，添加一个点击事件，当点击时恢复初始的界面
+          var retry = document.createElement("button");
+          retry.innerHTML = "再问一次";
+          retry.onclick = function () {
+            question.innerHTML = "你爱我吗？";
+            input.style.display = "inline-block";
+            button.style.display = "inline-block";
+            input.value = "";
+            document.body.removeChild(retry); // 移除“再问一次”的按钮
+          };
+          document.body.appendChild(retry); // 将“再问一次”的按钮添加到body元素中
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <p style="font-size: 100px" id="question">你爱我吗？</p>
+    <input id="input" />
+    <button
+      style="background-color: chartreuse"
+      id="button"
+      onclick="checkAnswer()"
+    >
+      确认
+    </button>
+  </body>
+</html>
